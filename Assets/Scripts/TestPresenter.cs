@@ -18,7 +18,6 @@ public class TestPresenter : MonoBehaviour
 
 		var observable = Observable.Merge(mines.Select(x => x.squareStatus.AsObservable()));
 
-
 		observable.Subscribe(x => {
 			if ( x == Type.SquareStatus.CLICKED ) {
 				Debug.Log("is CLICKED");
@@ -32,8 +31,6 @@ public class TestPresenter : MonoBehaviour
 			if (x == Type.SquareStatus.FLAG) {
 				Debug.Log("is CLICKABLE");
 			}
-
-
 		});
 
 

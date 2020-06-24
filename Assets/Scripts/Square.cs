@@ -12,9 +12,13 @@ public class Square : MonoBehaviour, IPointerClickHandler {
 
 	private Type.SquareType squareType = Type.SquareType.NONE;
 
+	void Start() {
+		squareStatus.OnNext(Type.SquareStatus.CLICKABLE);
+	}
+
 	public void OnPointerClick(PointerEventData eventData) {
 		Debug.Log(eventData.pointerEnter.name);
-		squareStatus.OnNext(Type.SquareStatus.CLICKED);
+		this.onClick();
 	}
 
 
@@ -33,14 +37,10 @@ public class Square : MonoBehaviour, IPointerClickHandler {
 				squareStatus.OnNext(Type.SquareStatus.CLICKED);
 				break;
 			
-			default: 
+			default:
+				squareStatus.OnNext(Type.SquareStatus.CLICKED);
 				break;
 		}
 
-	}
-
-    void Start()
-    {
-		squareStatus.OnNext(Type.SquareStatus.CLICKABLE);
 	}
 }
