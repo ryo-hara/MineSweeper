@@ -10,7 +10,7 @@ using UnityEngine.EventSystems;
 public class TestPresenter : MonoBehaviour
 {
 
-	public GameObject minesObj;
+	[SerializeField] private GameObject minesObj;
 
 	void Start()
     {
