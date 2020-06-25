@@ -6,7 +6,7 @@ using UniRx;
 using UnityEngine.EventSystems;
 
 
-public class Square : MonoBehaviour, IPointerClickHandler {
+public class Square : MonoBehaviour {
 
 	public Subject<Type.SquareStatus> squareStatus = new Subject<Type.SquareStatus>();
 
