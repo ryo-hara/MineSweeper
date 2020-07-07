@@ -10,21 +10,17 @@ public class StandardButton : MonoBehaviour
 	[SerializeField] 
 	private Button button;
 
-	private ButtonAction onClickCallBack = null;
+	private System.Action onClickCallBack = null;
 
 	private void Awake() {
 		button.onClick.AsObservable().Subscribe(_ => {
-			if(onClickCallBack != null)onClickCallBack.onClick();
-//			Debug.Log("OnClickAction");
-			});
+			onClickCallBack?.Invoke();
+			//Debug.Log("OnClickAction");
+		});
 	}
 
-	public void SetButtonAction(ButtonAction _onClickCallBack) {
+	public void SetButtonAction(System.Action _onClickCallBack) {
 		this.onClickCallBack = _onClickCallBack;
 	}
 
-}
-
-public abstract class ButtonAction{
-	public void onClick() { }
 }
