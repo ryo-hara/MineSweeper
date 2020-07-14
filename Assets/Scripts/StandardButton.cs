@@ -15,7 +15,7 @@ public class StandardButton : MonoBehaviour
 	private void Awake() {
 		button.onClick.AsObservable().Subscribe(_ => {
 			onClickCallBack?.Invoke();
-			//Debug.Log("OnClickAction");
+			Debug.Log("OnClickAction");
 		});
 	}
 
