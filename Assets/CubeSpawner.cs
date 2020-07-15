@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class CubeSpawner : ITickable {
+public class CubeSpawner : ITickable 
+{
 	private BaseCube.CubeFactory _factory;
 
 	public CubeSpawner(BaseCube.CubeFactory factory) {
@@ -11,6 +12,8 @@ public class CubeSpawner : ITickable {
 	}
 
 	public void Tick() {
-		_factory.Create();
+		_factory.Create(0);
+		_factory.Create(1);
+		_factory.Create(2);
 	}
 }

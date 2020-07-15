@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class GameObjectFactory : IFactory<GameObject> {
-	DiContainer _container;
-	UnityEngine.Object _prefab;
+public class GameObjectFactory : IFactory<int, GameObject> 
+{
+	private DiContainer _container;
+	private GameObject[] _gameObjects;
 
 	[Inject]
-	public void Construct(
-		UnityEngine.Object prefab,
-		DiContainer container) {
+	public void Construct(GameObject[] gameObjects, DiContainer container) {
 		_container = container;
-		_prefab = prefab;
+		_gameObjects = gameObjects;
 	}
 
-	public GameObject Create() {
-		return _container.InstantiatePrefab(_prefab);
+	public GameObject Create(int i) {
+		return _container.InstantiatePrefab(_gameObjects[i]);
 	}
 }
