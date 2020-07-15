@@ -4,7 +4,7 @@ using UnityEngine;
 using Zenject;
 
 public class BaseCube : MonoBehaviour {
-	public class Factory : Factory<BaseCube> {
+	public class CubeFactory : GameObjectFactory {
 
 	}
 }

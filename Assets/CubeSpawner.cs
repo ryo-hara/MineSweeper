@@ -4,9 +4,9 @@ using UnityEngine;
 using Zenject;
 
 public class CubeSpawner : ITickable {
-	private BaseCube.Factory _factory;
+	private BaseCube.CubeFactory _factory;
 
-	public CubeSpawner(BaseCube.Factory factory) {
+	public CubeSpawner(BaseCube.CubeFactory factory) {
 		_factory = factory;
 	}
 
