@@ -8,6 +8,6 @@ public class GameInstaller : MonoInstaller
 	public override void InstallBindings() {
 		Container.Bind<ITickable>().To<CubeSpawner>().AsSingle();
 
-		Container.Bind<BaseCube.CubeFactory>().AsSingle().WithArguments(_cubes);
+		Container.Bind<GameObjectFactory>().AsSingle().WithArguments(_cubes);
 	}
 }

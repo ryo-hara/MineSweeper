@@ -5,9 +5,9 @@ using Zenject;
 
 public class CubeSpawner : ITickable 
 {
-	private BaseCube.CubeFactory _factory;
+	private GameObjectFactory _factory;
 
-	public CubeSpawner(BaseCube.CubeFactory factory) {
+	public CubeSpawner(GameObjectFactory factory) {
 		_factory = factory;
 	}
 
