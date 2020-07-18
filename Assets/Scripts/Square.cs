@@ -41,6 +41,10 @@ public class Square : MonoBehaviour {
 				squareStatus.OnNext(Type.SquareStatus.CLICKED);
 				break;
 		}
-
 	}
+
+
+	public class Factory : BaseFactory { }
+
+
 }
