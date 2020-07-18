@@ -14,7 +14,7 @@ public class SquareSpawner : IInitializable
 
 		for (int ii = 0; ii < mineSweeperModel.columnNum; ii++) {
 			for (int jj = 0; jj < mineSweeperModel.rowNum; jj++) {
-				var square = squareFactory.Create();
+				squareFactory.Create();
 			}
 		}
 	}
