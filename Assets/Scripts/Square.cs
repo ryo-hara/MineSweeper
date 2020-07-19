@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
-
 using UnityEngine.EventSystems;
+using Zenject;
 
 
 public class Square : MonoBehaviour {
@@ -44,7 +44,7 @@ public class Square : MonoBehaviour {
 	}
 
 
-	public class Factory : BaseFactory { }
+	public class Factory : PlaceholderFactory<Square> { }
 
 
 }

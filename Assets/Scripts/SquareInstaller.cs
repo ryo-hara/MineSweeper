@@ -10,7 +10,6 @@ public class SquareInstaller : MonoInstaller
 
 	public override void InstallBindings() {
 		Container.Bind<IInitializable>().To<SquareSpawner>().AsSingle();
-		Container.Bind<Square.Factory>().AsSingle().WithArguments(prefab);
+		Container.BindFactory<Square, Square.Factory>().FromComponentInNewPrefab(prefab);
 	}
-
 }
