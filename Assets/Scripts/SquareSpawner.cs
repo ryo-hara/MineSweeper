@@ -11,11 +11,6 @@ public class SquareSpawner : IInitializable
 	private MineSweeperModel mineSweeperModel = new MineSweeperModel();
 
 	public void Initialize() {
-
-		for (int ii = 0; ii < mineSweeperModel.columnNum; ii++) {
-			for (int jj = 0; jj < mineSweeperModel.rowNum; jj++) {
-				squareFactory.Create();
-			}
-		}
+		mineSweeperModel.CreateSquare(() => { squareFactory.Create(); });
 	}
 }
