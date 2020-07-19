@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class SquareSpawner : IInitializable
+public class SquareSpawner : MonoBehaviour
 {
 	[Inject]
 	private Square.Factory squareFactory;
@@ -12,5 +12,9 @@ public class SquareSpawner : IInitializable
 
 	public void Initialize() {
 		mineSweeperModel.CreateSquare(() => { squareFactory.Create(); });
+	}
+
+	private void Awake() {
+		Initialize();
 	}
 }

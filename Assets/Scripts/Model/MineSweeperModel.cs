@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MineSweeperModel : MonoBehaviour
+public class MineSweeperModel
 {
 
 	public const int MAX_ROW_NUM = 100;
