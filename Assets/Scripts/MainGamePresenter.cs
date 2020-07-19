@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class SquareSpawner : MonoBehaviour
+public class MainGamePresenter : MonoBehaviour
 {
 	[Inject]
 	private Square.Factory squareFactory;
-
 	private MineSweeperModel mineSweeperModel = new MineSweeperModel();
 
 	public void Initialize() {
