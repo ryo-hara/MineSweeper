@@ -2,27 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
-
 using UnityEngine.EventSystems;
+using Zenject;
 
 
-public class Square : MonoBehaviour, IPointerClickHandler {
+public class Square : MonoBehaviour 
+{
+	[SerializeField]
+	private StandardButton standardButton;
 
 	public Subject<Type.SquareStatus> squareStatus = new Subject<Type.SquareStatus>();
-
 	private Type.SquareType squareType = Type.SquareType.NONE;
 
-	public void OnPointerClick(PointerEventData eventData) {
-		Debug.Log(eventData.pointerEnter.name);
-		squareStatus.OnNext(Type.SquareStatus.CLICKED);
+	private void Awake() 
+	{
+		squareStatus.OnNext(Type.SquareStatus.CLICKABLE);
+		standardButton.SetButtonAction(this.onClick);
 	}
 
-
-	public void setSquareType( Type.SquareType type) {
+	public void setSquareType( Type.SquareType type)
+	{
 		this.squareType = type;
 	}
 
-	public void onClick(){
+	public void onClick()
+	{
 		switch(squareType){
 			case Type.SquareType.BOMB:
 				Debug.Log("BOMB");
@@ -30,17 +34,18 @@ public class Square : MonoBehaviour, IPointerClickHandler {
 				break;
 
 			case Type.SquareType.EMPTY:
+				Debug.Log("EMPTY");
 				squareStatus.OnNext(Type.SquareStatus.CLICKED);
 				break;
 			
-			default: 
+			default:
+				Debug.Log("DEFAULT");
+				squareStatus.OnNext(Type.SquareStatus.CLICKED);
 				break;
 		}
-
 	}
 
-    void Start()
-    {
-		squareStatus.OnNext(Type.SquareStatus.CLICKABLE);
-	}
+
+	public class Factory : PlaceholderFactory<Square> { }
+
 }

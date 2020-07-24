@@ -10,14 +10,13 @@ using UnityEngine.EventSystems;
 public class TestPresenter : MonoBehaviour
 {
 
-	public GameObject minesObj;
+	[SerializeField] private GameObject minesObj;
 
 	void Start()
     {
 		var mines = minesObj.GetComponentsInChildren<Square>();
 
 		var observable = Observable.Merge(mines.Select(x => x.squareStatus.AsObservable()));
-
 
 		observable.Subscribe(x => {
 			if ( x == Type.SquareStatus.CLICKED ) {
@@ -32,8 +31,6 @@ public class TestPresenter : MonoBehaviour
 			if (x == Type.SquareStatus.FLAG) {
 				Debug.Log("is CLICKABLE");
 			}
-
-
 		});
 
 
