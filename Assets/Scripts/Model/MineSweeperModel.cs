@@ -13,8 +13,8 @@ public class MineSweeperModel
 	public const int MAX_COLUMN_NUM = 100;
 	public const int MAX_MINE_NUM = 100;
 
-	private int rowNum = 4;
-	private int columnNum = 4;
+	private int rowNum = 10;
+	private int columnNum = 10;
 	private int mineNum = 1;
 
 

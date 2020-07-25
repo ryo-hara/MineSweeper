@@ -16,7 +16,7 @@ public class Square : MonoBehaviour
 
 	private void Awake() 
 	{
-		squareStatus.OnNext(Type.SquareStatus.CLICKABLE);
+		squareStatus.OnNext(Type.SquareStatus.ON_INIT);
 		standardButton.SetButtonAction(this.onClick);
 	}
 
@@ -28,6 +28,12 @@ public class Square : MonoBehaviour
 	public void onClick()
 	{
 		switch(squareType){
+
+			case Type.SquareType.NONE:
+				Debug.Log("FIRST_CLICK");
+				squareStatus.OnNext(Type.SquareStatus.FIRST_CLICK);
+				break;
+
 			case Type.SquareType.BOMB:
 				Debug.Log("BOMB");
 				squareStatus.OnNext(Type.SquareStatus.EXPLOSION);
