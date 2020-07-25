@@ -11,7 +11,7 @@ public class Square : MonoBehaviour
 	[SerializeField]
 	private StandardButton standardButton;
 
-	public Subject<Type.SquareStatus> squareStatus = new Subject<Type.SquareStatus>();
+	public BehaviorSubject<Type.SquareStatus> squareStatus = new BehaviorSubject<Type.SquareStatus>(Type.SquareStatus.ON_INIT);
 	private Type.SquareType squareType = Type.SquareType.NONE;
 
 	private void Awake() 
