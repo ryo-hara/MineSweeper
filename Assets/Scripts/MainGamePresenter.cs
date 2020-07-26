@@ -25,10 +25,16 @@ public class MainGamePresenter : MonoBehaviour
 		});
 
 
-		Observable.Merge(squareList.Select( x => x.squareStatus)).Subscribe( status => {
+		Observable.Merge(squareList.Select( obj => obj.squareStatus)).Subscribe( status => {
 			switch (status) {
 				case Type.SquareStatus.FIRST_CLICK:
 					Debug.Log("FIRSTCLICK  全てのオブジェクトに対して行動する");
+					//ここでクリックしたオブジェクト以外にマインをセットする
+
+					Debug.Log("残りのマス" + squareList.Where(obj => obj.squareStatus.Value != Type.SquareStatus.FIRST_CLICK).Count());
+
+					mineSweeperModel.SetSquareStatus(squareList.Where(obj => obj.squareStatus.Value != Type.SquareStatus.FIRST_CLICK).ToList());
+
 					break;
 			}
 		});

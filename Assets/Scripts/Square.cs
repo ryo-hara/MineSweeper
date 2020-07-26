@@ -34,6 +34,11 @@ public class Square : MonoBehaviour
 				squareStatus.OnNext(Type.SquareStatus.FIRST_CLICK);
 				break;
 
+			case Type.SquareType.NORMAL:
+				Debug.Log("NORMAL");
+				squareStatus.OnNext(Type.SquareStatus.CLICKED);
+				break;
+
 			case Type.SquareType.BOMB:
 				Debug.Log("BOMB");
 				squareStatus.OnNext(Type.SquareStatus.EXPLOSION);
