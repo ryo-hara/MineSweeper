@@ -44,7 +44,7 @@ public class MainGamePresenter : MonoBehaviour
 
 					break;
 			}
-		});
+		}).AddTo(this);
 	}
 
 }
