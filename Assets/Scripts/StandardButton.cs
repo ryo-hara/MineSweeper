@@ -12,13 +12,15 @@ public class StandardButton : MonoBehaviour
 
 	private System.Action onClickCallBack = null;
 
-	private void Awake() {
+	private void Awake() 
+	{
 		button.onClick.AsObservable().Subscribe(_ => {
 			onClickCallBack?.Invoke();
 		});
 	}
 
-	public void SetButtonAction(System.Action _onClickCallBack) {
+	public void SetButtonAction(System.Action _onClickCallBack) 
+	{
 		this.onClickCallBack = _onClickCallBack;
 	}
 

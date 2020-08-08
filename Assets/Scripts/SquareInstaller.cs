@@ -8,7 +8,8 @@ public class SquareInstaller : MonoInstaller
 {
 	[SerializeField] private GameObject prefab;
 
-	public override void InstallBindings() {
+	public override void InstallBindings() 
+	{
 		Container.BindFactory<Square, Square.Factory>().FromComponentInNewPrefab(prefab);
 	}
 }

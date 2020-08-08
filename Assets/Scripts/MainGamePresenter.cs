@@ -14,11 +14,13 @@ public class MainGamePresenter : MonoBehaviour
 	private List<Square> squareList = new List<Square>();
 
 
-	private void Awake() {
+	private void Awake() 
+	{
 		Initialize();
 	}
 
-	public void Initialize() {
+	public void Initialize() 
+	{
 		mineSweeperModel.CreateSquare((point , sizeRatio) => {
 		//マス内で自分がどこにいてどこに配置されるかサイズと位置を取得する
 		var obj = squareFactory.Create();
