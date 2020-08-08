@@ -21,7 +21,7 @@ public class MainGamePresenter : MonoBehaviour
 
 	public void Initialize() 
 	{
-		mineSweeperModel.CreateSquare((point , sizeRatio) => {
+		mineSweeperModel.CreateSquares((point , sizeRatio) => {
 		//マス内で自分がどこにいてどこに配置されるかサイズと位置を取得する
 		var obj = squareFactory.Create();
 

@@ -20,7 +20,7 @@ public class MineSweeperModel
 	private int mineNum = 50;
 
 
-	public void CreateSquare(System.Action<Vector2, float> onCreateCallBack) 
+	public void CreateSquares(System.Action<Vector2, float> onCreateCallBack) 
 	{
 		Vector2 startPoint = GetCreateStartPointWorld() + new Vector2(GetOnceSquareWorldSizeRatio() / 2, -1 * GetOnceSquareWorldSizeRatio() / 2);
 		float squareSizeRatio = GetOnceSquareWorldSizeRatio();
