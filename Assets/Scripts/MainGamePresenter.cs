@@ -8,10 +8,15 @@ using System.Linq;
 public class MainGamePresenter : MonoBehaviour
 {
 	[Inject]
-	private Square.Factory squareFactory;
+	private Square.Factory squareFactory = null;
 	private MineSweeperModel mineSweeperModel = new MineSweeperModel();
 
 	private List<Square> squareList = new List<Square>();
+
+
+	private void Awake() {
+		Initialize();
+	}
 
 	public void Initialize() {
 		mineSweeperModel.CreateSquare((point , sizeRatio) => {
@@ -38,11 +43,6 @@ public class MainGamePresenter : MonoBehaviour
 					break;
 			}
 		});
-
-
 	}
 
-	private void Awake() {
-		Initialize();
-	}
 }
