@@ -57,6 +57,22 @@ public class Square : MonoBehaviour
 	}
 
 
-	public class Factory : PlaceholderFactory<Square> { }
+	public class Factory : IFactory<Vector2, float, Square> 
+	{
+		private DiContainer _container;
+		private Square _gameObject;
+
+		[Inject]
+		public void Construct(Square gameObject, DiContainer container) 
+		{
+			_container = container;
+			_gameObject = gameObject;
+		}
+
+		public Square Create(Vector2 pos, float ratio) 
+		{
+			return _container.InstantiatePrefab(_gameObject).GetComponent<Square>();
+		}
+	}
 
 }
