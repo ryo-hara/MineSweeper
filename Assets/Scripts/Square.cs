@@ -69,9 +69,13 @@ public class Square : MonoBehaviour
 			_gameObject = gameObject;
 		}
 
-		public Square Create(Vector2 pos, float ratio) 
+		public Square Create(Vector2 point, float sizeRatio) 
 		{
-			return _container.InstantiatePrefab(_gameObject).GetComponent<Square>();
+			Square square = _container.InstantiatePrefab(_gameObject).GetComponent<Square>();
+			square.GetComponent<Transform>().position = point;
+			square.GetComponent<Transform>().localScale = new Vector3(sizeRatio, sizeRatio, sizeRatio);
+
+			return square;
 		}
 	}
 
