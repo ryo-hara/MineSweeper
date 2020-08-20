@@ -426,6 +426,107 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04c55acaae5002c44a98e5acfa444629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1798488328
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 497562693, guid: d0826e154c67d25488b5ef091b8f7218, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 497562694, guid: d0826e154c67d25488b5ef091b8f7218, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 497562695, guid: d0826e154c67d25488b5ef091b8f7218, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 586956156, guid: d0826e154c67d25488b5ef091b8f7218, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.75686276
+      objectReference: {fileID: 0}
+    - target: {fileID: 586956156, guid: d0826e154c67d25488b5ef091b8f7218, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 586956156, guid: d0826e154c67d25488b5ef091b8f7218, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.62352943
+      objectReference: {fileID: 0}
+    - target: {fileID: 586956156, guid: d0826e154c67d25488b5ef091b8f7218, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4288675777
+      objectReference: {fileID: 0}
+    - target: {fileID: 586956158, guid: d0826e154c67d25488b5ef091b8f7218, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692144146313286078, guid: d0826e154c67d25488b5ef091b8f7218,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692144146313286078, guid: d0826e154c67d25488b5ef091b8f7218,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692144146313286078, guid: d0826e154c67d25488b5ef091b8f7218,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692144146313286078, guid: d0826e154c67d25488b5ef091b8f7218,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692144146313286078, guid: d0826e154c67d25488b5ef091b8f7218,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692144146313286078, guid: d0826e154c67d25488b5ef091b8f7218,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692144146313286078, guid: d0826e154c67d25488b5ef091b8f7218,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692144146313286078, guid: d0826e154c67d25488b5ef091b8f7218,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692144146313286078, guid: d0826e154c67d25488b5ef091b8f7218,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692144146313286078, guid: d0826e154c67d25488b5ef091b8f7218,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692144146313286078, guid: d0826e154c67d25488b5ef091b8f7218,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2692144146313286079, guid: d0826e154c67d25488b5ef091b8f7218,
+        type: 3}
+      propertyPath: m_Name
+      value: SquareE
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d0826e154c67d25488b5ef091b8f7218, type: 3}
 --- !u!4 &1899960206 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2692144146313286078, guid: ad33571f1cc0a504486dd9a237cffad8,
@@ -577,7 +678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d82fd79fd81785438d466106d349380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2692144146313286079, guid: ad33571f1cc0a504486dd9a237cffad8, type: 3}
+  prefab: {fileID: 2692144146313286077, guid: ad33571f1cc0a504486dd9a237cffad8, type: 3}
 --- !u!1001 &2692144146137322191
 PrefabInstance:
   m_ObjectHideFlags: 0

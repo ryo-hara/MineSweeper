@@ -11,12 +11,12 @@ public class Square : MonoBehaviour
 	[SerializeField]
 	private StandardButton standardButton;
 
-	public Subject<Type.SquareStatus> squareStatus = new Subject<Type.SquareStatus>();
+	public BehaviorSubject<Type.SquareStatus> squareStatus = new BehaviorSubject<Type.SquareStatus>(Type.SquareStatus.ON_INIT);
 	private Type.SquareType squareType = Type.SquareType.NONE;
 
 	private void Awake() 
 	{
-		squareStatus.OnNext(Type.SquareStatus.CLICKABLE);
+		squareStatus.OnNext(Type.SquareStatus.ON_INIT);
 		standardButton.SetButtonAction(this.onClick);
 	}
 
@@ -28,6 +28,17 @@ public class Square : MonoBehaviour
 	public void onClick()
 	{
 		switch(squareType){
+
+			case Type.SquareType.NONE:
+				Debug.Log("FIRST_CLICK");
+				squareStatus.OnNext(Type.SquareStatus.FIRST_CLICK);
+				break;
+
+			case Type.SquareType.NORMAL:
+				Debug.Log("NORMAL");
+				squareStatus.OnNext(Type.SquareStatus.CLICKED);
+				break;
+
 			case Type.SquareType.BOMB:
 				Debug.Log("BOMB");
 				squareStatus.OnNext(Type.SquareStatus.EXPLOSION);
@@ -46,6 +57,26 @@ public class Square : MonoBehaviour
 	}
 
 
-	public class Factory : PlaceholderFactory<Square> { }
+	public class Factory : IFactory<Vector2, float, Square> 
+	{
+		private DiContainer _container;
+		private Square _gameObject;
+
+		[Inject]
+		public void Construct(Square gameObject, DiContainer container) 
+		{
+			_container = container;
+			_gameObject = gameObject;
+		}
+
+		public Square Create(Vector2 point, float sizeRatio) 
+		{
+			var square = _container.InstantiatePrefabForComponent<Square>(_gameObject);
+			square.transform.position = point;
+			square.transform.localScale = new Vector3(sizeRatio, sizeRatio, sizeRatio);
+
+			return square;
+		}
+	}
 
 }

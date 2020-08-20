@@ -6,9 +6,10 @@ using Zenject;
 
 public class SquareInstaller : MonoInstaller
 {
-	[SerializeField] private GameObject prefab;
+	[SerializeField] private Square prefab;
 
-	public override void InstallBindings() {
-		Container.BindFactory<Square, Square.Factory>().FromComponentInNewPrefab(prefab);
+	public override void InstallBindings() 
+	{
+		Container.Bind<Square.Factory>().AsSingle().WithArguments(prefab);
 	}
 }
