@@ -8,8 +8,13 @@ public class MineSweeperModel
 {
 
 	//960*720
-	public const float DRAWING_SIZE_AREA_X = 500.0f;
-	public const float DRAWING_SIZE_AREA_Y = 500.0f;
+	public const float DRAWING_SIZE_AREA_X = 550.0f;
+	public const float DRAWING_SIZE_AREA_Y = 550.0f;
+
+	public const float DRAWING_START_POINT_X = 500.0f;
+	public const float DRAWING_START_POINT_Y = 500.0f;
+
+	//720*1028
 
 	public const int MAX_ROW_NUM = 100;
 	public const int MAX_COLUMN_NUM = 100;
@@ -61,10 +66,14 @@ public class MineSweeperModel
 
 	private Vector2 GetCreateStartPointWorld()
 	{
+		float adjustedValueX = 0.0f;//
+		float adjustedValueY =  -1 * 149.0f / GetScreenPixelSize().y * GetScreenWorldSize().y;//144
+
 		float x = -1 * ((DRAWING_SIZE_AREA_X/2) / GetScreenPixelSize().x ) * GetScreenWorldSize().x;
 		float y = ((DRAWING_SIZE_AREA_Y / 2) / GetScreenPixelSize().y) * GetScreenWorldSize().y;
 		//ここでのx,yは敷き詰めるオブジェクトの上左端を示す
-		return new Vector2(x, y);
+
+		return new Vector2(x + adjustedValueX, y + adjustedValueY);
 	}
 
 }
