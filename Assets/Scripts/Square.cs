@@ -10,28 +10,45 @@ public class Square : MonoBehaviour
 {
 	[SerializeField]
 	private StandardButton standardButton;
+	[SerializeField]
+	private GameObject fragIconObject;
+	[SerializeField]
+	private GameObject bombIconObject;
+
 
 	public BehaviorSubject<Type.SquareStatus> squareStatus = new BehaviorSubject<Type.SquareStatus>(Type.SquareStatus.ON_INIT);
-	private Type.SquareType squareType = Type.SquareType.NONE;
+	private Type.SquareType squareType = Type.SquareType.INIT;
 
 	private void Awake() 
 	{
 		squareStatus.OnNext(Type.SquareStatus.ON_INIT);
 		standardButton.SetButtonAction(this.onClick);
+		fragIconObject.SetActive(false);
+		bombIconObject.SetActive(false);
 	}
 
-	public void setSquareType( Type.SquareType type)
+	public void setSquareType(Type.SquareType type)
 	{
 		this.squareType = type;
+		switch (squareType) {
+			case Type.SquareType.NORMAL:
+				fragIconObject.SetActive(true);
+				break;
+
+			case Type.SquareType.BOMB:
+				bombIconObject.SetActive(true);
+				break;
+		}
 	}
 
-	public void onClick()
+		public void onClick()
 	{
 		switch(squareType){
 
-			case Type.SquareType.NONE:
+			case Type.SquareType.INIT:
 				Debug.Log("FIRST_CLICK");
 				squareStatus.OnNext(Type.SquareStatus.FIRST_CLICK);
+				squareType = Type.SquareType.NONE;
 				break;
 
 			case Type.SquareType.NORMAL:
@@ -44,10 +61,6 @@ public class Square : MonoBehaviour
 				squareStatus.OnNext(Type.SquareStatus.EXPLOSION);
 				break;
 
-			case Type.SquareType.EMPTY:
-				Debug.Log("EMPTY");
-				squareStatus.OnNext(Type.SquareStatus.CLICKED);
-				break;
 			
 			default:
 				Debug.Log("DEFAULT");

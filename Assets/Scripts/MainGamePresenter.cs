@@ -36,6 +36,9 @@ public class MainGamePresenter : MonoBehaviour
 
 					Debug.Log("残りのマス" + squareList.Where(obj => obj.squareStatus.Value != Type.SquareStatus.FIRST_CLICK).Count());
 
+
+
+
 					mineSweeperModel.SetSquareStatus(squareList.Where(obj => obj.squareStatus.Value != Type.SquareStatus.FIRST_CLICK).ToList());
 
 					break;

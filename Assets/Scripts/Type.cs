@@ -16,9 +16,7 @@ public class Type : MonoBehaviour
 	public enum SquareType {
 		INIT,
 		NORMAL,	//安全マス
-		NUMBER, //数字マス
 		BOMB,	//爆弾マス
-		EMPTY,  //クリック済みの空のマス
 		NONE
 	}
 

@@ -43,15 +43,16 @@ public class MineSweeperModel
 	//最初に1マスクリックされてから、クリックしていないマスに地雷と通常マスの情報を与える処理
 	public void SetSquareStatus(List<Square> list) 
 	{
-		var randomList = list.OrderBy(i => System.Guid.NewGuid());
+		var randomList = list.OrderBy(i => System.Guid.NewGuid()).ToList();
 		randomList.Take(mineNum).ToList().ForEach(obj => {
 			obj.setSquareType(Type.SquareType.BOMB);
-		});
+			});
 
 		randomList.Skip(mineNum).ToList().ForEach( obj =>{
 			obj.setSquareType(Type.SquareType.NORMAL);
-		});		
+		});
 	}
+
 
 	private Vector2 GetScreenPixelSize(){ return new Vector2(Screen.width, Screen.height); }
 
