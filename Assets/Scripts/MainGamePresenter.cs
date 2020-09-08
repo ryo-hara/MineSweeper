@@ -14,6 +14,7 @@ public class MainGamePresenter : MonoBehaviour
 	private List<Square> squareList = new List<Square>();
 
 
+
 	private void Awake() 
 	{
 		Initialize();
@@ -33,15 +34,14 @@ public class MainGamePresenter : MonoBehaviour
 				case Type.SquareStatus.FIRST_CLICK:
 					Debug.Log("FIRSTCLICK  全てのオブジェクトに対して行動する");
 					//ここでクリックしたオブジェクト以外にマインをセットする
-
 					Debug.Log("残りのマス" + squareList.Where(obj => obj.squareStatus.Value != Type.SquareStatus.FIRST_CLICK).Count());
-
-
-
-
 					mineSweeperModel.SetSquareStatus(squareList.Where(obj => obj.squareStatus.Value != Type.SquareStatus.FIRST_CLICK).ToList());
-
 					break;
+
+				case Type.SquareStatus.EXPLOSION:
+					Debug.Log("GameOver");
+					break;
+
 			}
 		}).AddTo(this);
 	}

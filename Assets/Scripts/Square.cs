@@ -44,7 +44,7 @@ public class Square : MonoBehaviour
 		}
 	}
 
-		public void onClick()
+	public void onClick()
 	{
 		switch(squareType){
 
@@ -53,7 +53,6 @@ public class Square : MonoBehaviour
 				squareStatus.OnNext(Type.SquareStatus.FIRST_CLICK);
 				squareType = Type.SquareType.NONE;
 				clickedSquareObject.SetActive(true);
-
 				break;
 
 			case Type.SquareType.NORMAL:

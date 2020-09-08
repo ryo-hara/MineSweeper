@@ -53,6 +53,10 @@ public class MineSweeperModel
 		});
 	}
 
+	public int GetSquareAdjacentBombNum(List<Square> list ) {
+		return 0;
+	}
+
 
 	private Vector2 GetScreenPixelSize(){ return new Vector2(Screen.width, Screen.height); }
 
