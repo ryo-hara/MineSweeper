@@ -21,6 +21,9 @@ public class Square : MonoBehaviour
 	public BehaviorSubject<Type.SquareStatus> squareStatus = new BehaviorSubject<Type.SquareStatus>(Type.SquareStatus.ON_INIT);
 	private Type.SquareType squareType = Type.SquareType.INIT;
 
+	public bool isClickable = true;
+
+
 	private void Awake() 
 	{
 		squareStatus.OnNext(Type.SquareStatus.ON_INIT);
@@ -46,6 +49,7 @@ public class Square : MonoBehaviour
 
 	public void onClick()
 	{
+		if (!isClickable) return; 
 		switch(squareType){
 
 			case Type.SquareType.INIT:
