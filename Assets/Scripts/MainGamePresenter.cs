@@ -4,17 +4,25 @@ using UnityEngine;
 using Zenject;
 using UniRx;
 using System.Linq;
+using UnityEngine.SceneManagement;
+
 
 public class MainGamePresenter : MonoBehaviour
 {
 	[SerializeField]
 	private GameObject gameOverView = null;
 
+	[SerializeField]
+	private GameOverUI gameOverUI = null;
+
+
 	[Inject]
 	private Square.Factory squareFactory = null;
 	private MineSweeperModel mineSweeperModel = new MineSweeperModel();
 
 	private List<Square> squareList = new List<Square>();
+
+
 
 
 	private void Awake() 
@@ -30,6 +38,10 @@ public class MainGamePresenter : MonoBehaviour
 		var obj = squareFactory.Create(point, sizeRatio);
 		squareList.Add(obj);
 		});
+
+		this.gameOverUI.clickContinueButton.Subscribe(x => this.continueGame());
+
+		this.gameOverUI.clickExitButton.Subscribe(x => this.exitGame());
 
 
 		Observable.Merge(squareList.Select( obj => obj.squareStatus)).Subscribe( status => {
@@ -57,5 +69,23 @@ public class MainGamePresenter : MonoBehaviour
 			obj.isClickable = false;
 		}
 	}
+
+	private void continueGame(){
+		Debug.Log("Cpntinue");
+
+		Scene loadScene = SceneManager.GetActiveScene();
+		SceneManager.LoadScene(loadScene.name);
+
+	}
+
+	private void exitGame() {
+		Debug.Log("Exit");
+		#if UNITY_EDITOR	
+			UnityEditor.EditorApplication.isPlaying = false;
+		#elif UNITY_STANDALONE
+			UnityEngine.Application.Quit();
+		#endif
+	}
+
 
 }

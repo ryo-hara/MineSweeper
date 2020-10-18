@@ -77,6 +77,10 @@ public class Square : MonoBehaviour
 		}
 	}
 
+	public void onDestroy() 
+	{
+		Destroy(this.gameObject);	
+	}
 
 	public class Factory : IFactory<Vector2, float, Square> 
 	{
