@@ -23,6 +23,8 @@ public class MainGamePresenter : MonoBehaviour
 	private List<Square> squareList = new List<Square>();
 
 
+	// クリック時に数字を出す
+	// クリック時に周囲のマスを今朝う
 
 
 	private void Awake() 
@@ -71,7 +73,7 @@ public class MainGamePresenter : MonoBehaviour
 	}
 
 	private void continueGame(){
-		Debug.Log("Cpntinue");
+		Debug.Log("Continue");
 
 		Scene loadScene = SceneManager.GetActiveScene();
 		SceneManager.LoadScene(loadScene.name);
@@ -86,6 +88,4 @@ public class MainGamePresenter : MonoBehaviour
 			UnityEngine.Application.Quit();
 		#endif
 	}
-
-
 }

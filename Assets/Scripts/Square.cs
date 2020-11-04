@@ -57,12 +57,14 @@ public class Square : MonoBehaviour
 				squareStatus.OnNext(Type.SquareStatus.FIRST_CLICK);
 				squareType = Type.SquareType.NONE;
 				clickedSquareObject.SetActive(true);
+				this.isClickable = false;
 				break;
 
 			case Type.SquareType.NORMAL:
 				Debug.Log("NORMAL");
 				squareStatus.OnNext(Type.SquareStatus.CLICKED);
 				clickedSquareObject.SetActive(true);
+				this.isClickable = false;
 				break;
 
 			case Type.SquareType.BOMB:
