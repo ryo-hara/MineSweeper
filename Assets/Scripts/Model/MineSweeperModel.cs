@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-
+using ModestTree;
 
 public class MineSweeperModel
 {
@@ -25,16 +25,18 @@ public class MineSweeperModel
 	private int mineNum = 50;
 
 
-	public void CreateSquares(System.Action<Vector2, float> onCreateCallBack) 
+	public void CreateSquares(System.Action<int, Vector2, float> onCreateCallBack) 
 	{
 		Vector2 startPoint = GetCreateStartPointWorld() + new Vector2(GetOnceSquareWorldSizeRatio() / 2, -1 * GetOnceSquareWorldSizeRatio() / 2);
 		float squareSizeRatio = GetOnceSquareWorldSizeRatio();
 
 		for (int ii = 0; ii < this.columnNum; ii++) {
 			for (int jj = 0; jj < this.rowNum; jj++) {
-				float x = startPoint.x + ii * squareSizeRatio;
-				float y = startPoint.y - jj * squareSizeRatio;
-				onCreateCallBack.Invoke( new Vector2(x,y), squareSizeRatio);
+				float x = startPoint.x + jj * squareSizeRatio;
+				float y = startPoint.y - ii * squareSizeRatio;
+				int id = jj + ii * this.rowNum;
+				Debug.Log("a:"+id);
+				onCreateCallBack.Invoke(id, new Vector2(x,y), squareSizeRatio);
 			}
 		}
 	}
@@ -52,6 +54,15 @@ public class MineSweeperModel
 			obj.setSquareType(Type.SquareType.NORMAL);
 		});
 	}
+
+	//Bomの数を取得
+	public int getAdjacentBombNum(List<Square> list, int id) {
+
+		list.First(square => square.id == id);
+
+		return 0;
+	}
+
 
 	public int GetSquareAdjacentBombNum(List<Square> list ) {
 		return 0;

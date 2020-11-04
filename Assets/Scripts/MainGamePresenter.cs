@@ -35,10 +35,11 @@ public class MainGamePresenter : MonoBehaviour
 	public void Initialize() 
 	{
 		gameOverView.SetActive(false);
-		mineSweeperModel.CreateSquares((point , sizeRatio) => {
-		//マス内で自分がどこにいてどこに配置されるかサイズと位置を取得する
-		var obj = squareFactory.Create(point, sizeRatio);
-		squareList.Add(obj);
+		mineSweeperModel.CreateSquares((id, point , sizeRatio) => {
+			//マス内で自分がどこにいてどこに配置されるかサイズと位置を取得する
+			var obj = squareFactory.Create(point, sizeRatio);
+			obj.id = id;
+			squareList.Add(obj);
 		});
 
 		this.gameOverUI.clickContinueButton.Subscribe(x => this.continueGame());
