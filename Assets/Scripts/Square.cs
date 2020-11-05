@@ -17,12 +17,14 @@ public class Square : MonoBehaviour
 	[SerializeField]
 	private GameObject clickedSquareObject;
 
-	public int id = 0;
+	public int index = 0;
 
 	public BehaviorSubject<Type.SquareStatus> squareStatus = new BehaviorSubject<Type.SquareStatus>(Type.SquareStatus.ON_INIT);
 	private Type.SquareType squareType = Type.SquareType.INIT;
 
 	public bool isClickable = true;
+
+	private int aroundBombNum = 0;
 
 
 	private void Awake() 
@@ -48,13 +50,22 @@ public class Square : MonoBehaviour
 		}
 	}
 
+	public Type.SquareType GetSquareType()
+	{
+		return this.squareType;
+	}
+
+	public void SetAroundBombNum(int bombNum){
+		this.aroundBombNum = bombNum;
+	}
+
 	public void onClick()
 	{
 		if (!isClickable) return; 
 		switch(squareType){
 
 			case Type.SquareType.INIT:
-				Debug.Log("FIRST_CLICK:" + id);
+				Debug.Log("FIRST_CLICK:" + index);
 				squareStatus.OnNext(Type.SquareStatus.FIRST_CLICK);
 				squareType = Type.SquareType.NONE;
 				clickedSquareObject.SetActive(true);
@@ -62,19 +73,20 @@ public class Square : MonoBehaviour
 				break;
 
 			case Type.SquareType.NORMAL:
-				Debug.Log("NORMAL:"+id);
+				Debug.Log("NORMAL:"+ index);
 				squareStatus.OnNext(Type.SquareStatus.CLICKED);
 				clickedSquareObject.SetActive(true);
 				this.isClickable = false;
+				Debug.Log("AroundBomb:"+ aroundBombNum);
 				break;
 
 			case Type.SquareType.BOMB:
-				Debug.Log("BOMB:" + id);
+				Debug.Log("BOMB:" + index);
 				squareStatus.OnNext(Type.SquareStatus.EXPLOSION);
 				break;
 
 			default:
-				Debug.Log("DEFAULT:" + id);
+				Debug.Log("DEFAULT:" + index);
 				squareStatus.OnNext(Type.SquareStatus.CLICKED);
 				break;
 		}

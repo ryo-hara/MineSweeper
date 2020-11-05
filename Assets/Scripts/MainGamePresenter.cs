@@ -6,7 +6,6 @@ using UniRx;
 using System.Linq;
 using UnityEngine.SceneManagement;
 
-
 public class MainGamePresenter : MonoBehaviour
 {
 	[SerializeField]
@@ -35,12 +34,14 @@ public class MainGamePresenter : MonoBehaviour
 	public void Initialize() 
 	{
 		gameOverView.SetActive(false);
-		mineSweeperModel.CreateSquares((id, point , sizeRatio) => {
+		mineSweeperModel.CreateSquares((index, point , sizeRatio) => {
 			//マス内で自分がどこにいてどこに配置されるかサイズと位置を取得する
 			var obj = squareFactory.Create(point, sizeRatio);
-			obj.id = id;
+			obj.index = index;
 			squareList.Add(obj);
 		});
+
+		Debug.Log("id__"+string.Join(",", squareList.Select(i => i.index)));
 
 		this.gameOverUI.clickContinueButton.Subscribe(x => this.continueGame());
 
@@ -54,6 +55,11 @@ public class MainGamePresenter : MonoBehaviour
 					//ここでクリックしたオブジェクト以外にマインをセットする
 					Debug.Log("残りのマス" + squareList.Where(obj => obj.squareStatus.Value != Type.SquareStatus.FIRST_CLICK).Count());
 					mineSweeperModel.SetSquareStatus(squareList.Where(obj => obj.squareStatus.Value != Type.SquareStatus.FIRST_CLICK).ToList());
+					Debug.Log("id__" + string.Join(",", squareList.Select(i => i.index)));
+
+					mineSweeperModel.SetAroundBombNum(squareList);
+
+
 					break;
 
 				case Type.SquareStatus.EXPLOSION:

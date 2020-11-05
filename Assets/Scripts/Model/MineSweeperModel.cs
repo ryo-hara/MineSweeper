@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using ModestTree;
+using ModestTree.Util;
 
 public class MineSweeperModel
 {
@@ -20,8 +21,8 @@ public class MineSweeperModel
 	public const int MAX_COLUMN_NUM = 100;
 	public const int MAX_MINE_NUM = 100;
 
-	private int rowNum = 10;
-	private int columnNum = 10;
+	private int rowNum = 10; // x
+	private int columnNum = 10; // y
 	private int mineNum = 50;
 
 
@@ -55,13 +56,62 @@ public class MineSweeperModel
 		});
 	}
 
-	//Bomの数を取得
-	public int getAdjacentBombNum(List<Square> list, int id) {
+	public void SetAroundBombNum(List<Square> list) {
+		int squareNum = this.columnNum * this.columnNum;
+		for (int i = 0; i < squareNum; i++){
+			list[i].SetAroundBombNum(getAdjacentBombNum(list, i));
+		}
+	}
 
-		list.First(square => square.id == id);
+	//指定マス周辺のBomの数を取得
+	private int getAdjacentBombNum(List<Square> list, int index) {
 
+		// id - 1 - x, id - x, id - x + 1
+		// id - 1, id + 1
+		// id + x - 1, id + x , id + x + 1 
+
+		int bombNum = 0;
+
+		bombNum += getSquareBombNum(index - 1 - this.rowNum, index, list);
+		bombNum += getSquareBombNum(index - 1 + this.rowNum, index, list);
+		bombNum += getSquareBombNum(index - this.rowNum, index, list);
+
+		bombNum += getSquareBombNum(index - 1, index, list);
+		bombNum += getSquareBombNum(index + 1, index, list);
+
+		bombNum += getSquareBombNum(index + 1 - this.rowNum, index, list);
+		bombNum += getSquareBombNum(index + 1 + this.rowNum, index, list);
+		bombNum += getSquareBombNum(index + this.rowNum, index, list);
+		Debug.Log("Index: " + index+"  AroundBomb:" + bombNum);
+		return bombNum;
+	}
+
+	//検索マスがボムを持っている場合は1,無い場合は0を返す
+	private int getSquareBombNum(int searchIndex, int baseIndex, List<Square> list) {
+
+		if (isInRange(searchIndex, baseIndex)) {
+			if (list[searchIndex].GetSquareType() == Type.SquareType.BOMB)
+				return 1;
+		}
 		return 0;
 	}
+
+	//検索先のIndexが自分の隣接マスか確認する処理
+	private bool isInRange(int searchIndex, int baseIndex) {
+		if (searchIndex < 0) return false;
+		if (searchIndex > this.rowNum * this.columnNum - 1) return false;
+
+		//元のマスが左端の場合かつさらに左のマスを見ようとしている場合
+		if (baseIndex % this.rowNum == 0 && (searchIndex == baseIndex - 1 || searchIndex == baseIndex + this.rowNum - 1 || searchIndex == baseIndex - this.rowNum - 1))
+			return false;
+
+		//元のマスが右端の場合かつさらに右のマスを見ようとしている場合
+		if (baseIndex % this.rowNum == this.rowNum - 1 && (searchIndex == baseIndex + 1 || searchIndex == baseIndex + this.rowNum + 1 || searchIndex == baseIndex - this.rowNum + 1))
+			return false;
+
+		return true;
+	}
+
 
 
 	public int GetSquareAdjacentBombNum(List<Square> list ) {
