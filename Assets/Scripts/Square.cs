@@ -30,6 +30,7 @@ public class Square : MonoBehaviour
 
 	private int aroundBombNum = 0;
 
+	public System.Action<int> onClickedAction;
 
 	private void Awake() 
 	{
@@ -64,6 +65,16 @@ public class Square : MonoBehaviour
 		this.adjacentNumberText.text = aroundBombNum.ToString();
 	}
 
+	public int GetAroundBombNum(){
+		return aroundBombNum;
+	}
+
+	public void FirstClickAction(){
+		if (squareType != Type.SquareType.INIT) return;
+		onClickedAction.Invoke(index);
+	}
+
+
 	public void onClick()
 	{
 		if (!isClickable) return; 
@@ -85,6 +96,7 @@ public class Square : MonoBehaviour
 				this.isClickable = false;
 				Debug.Log("AroundBomb:"+ aroundBombNum);
 				this.textObject.SetActive(true);
+				onClickedAction.Invoke(index);
 				break;
 
 			case Type.SquareType.BOMB:

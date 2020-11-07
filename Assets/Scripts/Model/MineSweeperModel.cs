@@ -23,7 +23,7 @@ public class MineSweeperModel
 
 	private int rowNum = 10; // x
 	private int columnNum = 10; // y
-	private int mineNum = 90;
+	private int mineNum = 10;
 
 
 	public void CreateSquares(System.Action<int, Vector2, float> onCreateCallBack) 
@@ -39,6 +39,28 @@ public class MineSweeperModel
 				Debug.Log("a:"+id);
 				onCreateCallBack.Invoke(id, new Vector2(x,y), squareSizeRatio);
 			}
+		}
+	}
+
+
+	public void checkNonAroundBombSquare(List<Square> list, int index) {
+		// id - x
+		// id - 1, id + 1
+		// id + x 
+		if (list[index].GetAroundBombNum() != 0) return;
+
+		clickedNonAroundBombSquare(index - this.rowNum, index, list);
+		clickedNonAroundBombSquare(index - 1, index, list);
+		clickedNonAroundBombSquare(index + 1, index, list);
+		clickedNonAroundBombSquare(index + this.rowNum, index, list);
+	}
+
+
+	private void clickedNonAroundBombSquare(int searchIndex, int baseIndex, List<Square> list) {
+		if (isInRange(searchIndex, baseIndex)) {
+			if (list[searchIndex].isClickable  && list[searchIndex].GetSquareType() == Type.SquareType.NORMAL /*&&*/) {
+				list[searchIndex].onClick();
+			}	
 		}
 	}
 

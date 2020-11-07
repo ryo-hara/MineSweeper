@@ -21,7 +21,6 @@ public class MainGamePresenter : MonoBehaviour
 	private GameClearUI gameClearUI = null;
 
 
-
 	[Inject]
 	private Square.Factory squareFactory = null;
 	private MineSweeperModel mineSweeperModel = new MineSweeperModel();
@@ -46,6 +45,9 @@ public class MainGamePresenter : MonoBehaviour
 			//マス内で自分がどこにいてどこに配置されるかサイズと位置を取得する
 			var obj = squareFactory.Create(point, sizeRatio);
 			obj.index = index;
+
+			obj.onClickedAction = this.SquareOnClickedAction;
+
 			squareList.Add(obj);
 		});
 
@@ -58,7 +60,7 @@ public class MainGamePresenter : MonoBehaviour
 		this.gameClearUI.clickExitButton.Subscribe(x => this.exitGame());
 
 
-		Observable.Merge(squareList.Select( obj => obj.squareStatus)).Subscribe( status => {
+		Observable.Merge(squareList.Select( obj => (obj.squareStatus))).Subscribe( status => {
 			switch (status) {
 				case Type.SquareStatus.FIRST_CLICK:
 					Debug.Log("FIRSTCLICK  全てのオブジェクトに対して行動する");
@@ -68,6 +70,7 @@ public class MainGamePresenter : MonoBehaviour
 					Debug.Log("id__" + string.Join(",", squareList.Select(i => i.index)));
 
 					mineSweeperModel.SetAroundBombNum(squareList);
+					this.FirstClickedActionEnded();
 					break;
 
 				case Type.SquareStatus.CLICKED:
@@ -75,8 +78,7 @@ public class MainGamePresenter : MonoBehaviour
 					Debug.Log("Clecked: " + cleckedSquareNum);
 					//初回クリックの値を足す
 					if (cleckedSquareNum + 1 >= mineSweeperModel.GetSquareNum() - mineSweeperModel.GetBombNum())
-						gameClear();
-
+						gameClear();	
 					break;
 
 				case Type.SquareStatus.EXPLOSION:
@@ -86,6 +88,17 @@ public class MainGamePresenter : MonoBehaviour
 			}
 		}).AddTo(this);
 	}
+
+	private void SquareOnClickedAction(int index){
+		mineSweeperModel.checkNonAroundBombSquare(squareList, index);
+	}
+
+	private void FirstClickedActionEnded(){
+		foreach(var obj in squareList){
+			obj.FirstClickAction();
+		}
+	}
+
 
 	private void gameOver() {
 		Debug.Log("GameOver");
