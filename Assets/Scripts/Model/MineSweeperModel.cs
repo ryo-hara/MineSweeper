@@ -49,16 +49,24 @@ public class MineSweeperModel
 		// id + x 
 		if (list[index].GetAroundBombNum() != 0) return;
 
+		clickedNonAroundBombSquare(index - 1 - this.rowNum, index, list);
+		clickedNonAroundBombSquare(index - 1 + this.rowNum, index, list);
 		clickedNonAroundBombSquare(index - this.rowNum, index, list);
+
 		clickedNonAroundBombSquare(index - 1, index, list);
 		clickedNonAroundBombSquare(index + 1, index, list);
+
+		clickedNonAroundBombSquare(index + 1 - this.rowNum, index, list);
+		clickedNonAroundBombSquare(index + 1 + this.rowNum, index, list);
 		clickedNonAroundBombSquare(index + this.rowNum, index, list);
+
+
 	}
 
 
 	private void clickedNonAroundBombSquare(int searchIndex, int baseIndex, List<Square> list) {
 		if (isInRange(searchIndex, baseIndex)) {
-			if (list[searchIndex].isClickable  && list[searchIndex].GetSquareType() == Type.SquareType.NORMAL /*&&*/) {
+			if (list[searchIndex].isClickable  && list[searchIndex].GetSquareType() == Type.SquareType.NORMAL) {
 				list[searchIndex].onClick();
 			}	
 		}
