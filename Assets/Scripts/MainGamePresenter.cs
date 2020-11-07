@@ -52,8 +52,10 @@ public class MainGamePresenter : MonoBehaviour
 		Debug.Log("id__"+string.Join(",", squareList.Select(i => i.index)));
 
 		this.gameOverUI.clickContinueButton.Subscribe(x => this.continueGame());
-
 		this.gameOverUI.clickExitButton.Subscribe(x => this.exitGame());
+
+		this.gameClearUI.clickContinueButton.Subscribe(x => this.continueGame());
+		this.gameClearUI.clickExitButton.Subscribe(x => this.exitGame());
 
 
 		Observable.Merge(squareList.Select( obj => obj.squareStatus)).Subscribe( status => {
@@ -71,6 +73,7 @@ public class MainGamePresenter : MonoBehaviour
 				case Type.SquareStatus.CLICKED:
 					int cleckedSquareNum = squareList.Count(square => (square.GetSquareType() == Type.SquareType.NORMAL) && square.squareStatus.Value == Type.SquareStatus.CLICKED);
 					Debug.Log("Clecked: " + cleckedSquareNum);
+					//初回クリックの値を足す
 					if (cleckedSquareNum + 1 >= mineSweeperModel.GetSquareNum() - mineSweeperModel.GetBombNum())
 						gameClear();
 
