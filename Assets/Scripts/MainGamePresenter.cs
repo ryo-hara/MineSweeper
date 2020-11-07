@@ -14,6 +14,13 @@ public class MainGamePresenter : MonoBehaviour
 	[SerializeField]
 	private GameOverUI gameOverUI = null;
 
+	[SerializeField]
+	private GameObject gameClearView = null;
+
+	[SerializeField]
+	private GameClearUI gameClearUI = null;
+
+
 
 	[Inject]
 	private Square.Factory squareFactory = null;
@@ -34,6 +41,7 @@ public class MainGamePresenter : MonoBehaviour
 	public void Initialize() 
 	{
 		gameOverView.SetActive(false);
+		gameClearView.SetActive(false);
 		mineSweeperModel.CreateSquares((index, point , sizeRatio) => {
 			//マス内で自分がどこにいてどこに配置されるかサイズと位置を取得する
 			var obj = squareFactory.Create(point, sizeRatio);
@@ -58,7 +66,13 @@ public class MainGamePresenter : MonoBehaviour
 					Debug.Log("id__" + string.Join(",", squareList.Select(i => i.index)));
 
 					mineSweeperModel.SetAroundBombNum(squareList);
+					break;
 
+				case Type.SquareStatus.CLICKED:
+					int cleckedSquareNum = squareList.Count(square => (square.GetSquareType() == Type.SquareType.NORMAL) && square.squareStatus.Value == Type.SquareStatus.CLICKED);
+					Debug.Log("Clecked: " + cleckedSquareNum);
+					if (cleckedSquareNum + 1 >= mineSweeperModel.GetSquareNum() - mineSweeperModel.GetBombNum())
+						gameClear();
 
 					break;
 
@@ -78,6 +92,15 @@ public class MainGamePresenter : MonoBehaviour
 			obj.isClickable = false;
 		}
 	}
+	private void gameClear() {
+		Debug.Log("GameClear");
+
+		gameClearView.SetActive(true);
+		foreach (var obj in squareList) {
+			obj.isClickable = false;
+		}
+	}
+
 
 	private void continueGame(){
 		Debug.Log("Continue");

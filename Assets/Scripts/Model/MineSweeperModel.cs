@@ -23,7 +23,7 @@ public class MineSweeperModel
 
 	private int rowNum = 10; // x
 	private int columnNum = 10; // y
-	private int mineNum = 10;
+	private int mineNum = 90;
 
 
 	public void CreateSquares(System.Action<int, Vector2, float> onCreateCallBack) 
@@ -113,6 +113,12 @@ public class MineSweeperModel
 	}
 
 
+	public int GetSquareNum(){
+		return rowNum * columnNum;
+	}
+	public int GetBombNum(){
+		return mineNum;
+	}
 
 	public int GetSquareAdjacentBombNum(List<Square> list ) {
 		return 0;

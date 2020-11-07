@@ -22,8 +22,6 @@ public class Square : MonoBehaviour
 	private TextMeshPro adjacentNumberText;
 
 
-
-
 	public int index = 0;
 
 	public BehaviorSubject<Type.SquareStatus> squareStatus = new BehaviorSubject<Type.SquareStatus>(Type.SquareStatus.ON_INIT);
