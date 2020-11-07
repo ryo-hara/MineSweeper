@@ -23,7 +23,7 @@ public class MineSweeperModel
 
 	private int rowNum = 10; // x
 	private int columnNum = 10; // y
-	private int mineNum = 50;
+	private int mineNum = 10;
 
 
 	public void CreateSquares(System.Action<int, Vector2, float> onCreateCallBack) 

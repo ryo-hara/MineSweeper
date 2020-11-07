@@ -4,7 +4,7 @@ using UnityEngine;
 using UniRx;
 using UnityEngine.EventSystems;
 using Zenject;
-
+using TMPro;
 
 public class Square : MonoBehaviour 
 {
@@ -16,12 +16,18 @@ public class Square : MonoBehaviour
 	private GameObject bombIconObject;
 	[SerializeField]
 	private GameObject clickedSquareObject;
+	[SerializeField]
+	private GameObject textObject;
+	[SerializeField]
+	private TextMeshPro adjacentNumberText;
+
+
+
 
 	public int index = 0;
 
 	public BehaviorSubject<Type.SquareStatus> squareStatus = new BehaviorSubject<Type.SquareStatus>(Type.SquareStatus.ON_INIT);
 	private Type.SquareType squareType = Type.SquareType.INIT;
-
 	public bool isClickable = true;
 
 	private int aroundBombNum = 0;
@@ -57,6 +63,7 @@ public class Square : MonoBehaviour
 
 	public void SetAroundBombNum(int bombNum){
 		this.aroundBombNum = bombNum;
+		this.adjacentNumberText.text = aroundBombNum.ToString();
 	}
 
 	public void onClick()
@@ -70,6 +77,7 @@ public class Square : MonoBehaviour
 				squareType = Type.SquareType.NONE;
 				clickedSquareObject.SetActive(true);
 				this.isClickable = false;
+				this.textObject.SetActive(true);
 				break;
 
 			case Type.SquareType.NORMAL:
@@ -78,6 +86,7 @@ public class Square : MonoBehaviour
 				clickedSquareObject.SetActive(true);
 				this.isClickable = false;
 				Debug.Log("AroundBomb:"+ aroundBombNum);
+				this.textObject.SetActive(true);
 				break;
 
 			case Type.SquareType.BOMB:
