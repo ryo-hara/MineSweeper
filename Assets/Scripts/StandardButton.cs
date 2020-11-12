@@ -31,7 +31,8 @@ public class StandardButton : MonoBehaviour
 		this.onClickCallBack = _onClickCallBack;
 	}
 
-	public void SetRightClickButtonAction(System.Action _onClickCallBack) {
+	public void SetRightClickButtonAction(System.Action _onClickCallBack) 
+	{
 		this.onRightClickCallBack = _onClickCallBack;
 	}
 

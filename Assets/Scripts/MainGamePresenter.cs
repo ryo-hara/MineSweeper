@@ -20,6 +20,12 @@ public class MainGamePresenter : MonoBehaviour
 	[SerializeField]
 	private GameClearUI gameClearUI = null;
 
+	[SerializeField]
+	private MainGameUIView mainGameUI = null;
+
+	[SerializeField]
+	private Timer timer = null;
+
 
 	[Inject]
 	private Square.Factory squareFactory = null;
@@ -55,6 +61,7 @@ public class MainGamePresenter : MonoBehaviour
 		this.gameClearUI.clickContinueButton.Subscribe(x => this.continueGame());
 		this.gameClearUI.clickExitButton.Subscribe(x => this.exitGame());
 
+		this.mainGameUI.SetBombNum(mineSweeperModel.GetBombNum());
 
 		Observable.Merge(squareList.Select( obj => (obj.squareStatus))).Subscribe( status => {
 			switch (status) {
@@ -80,8 +87,13 @@ public class MainGamePresenter : MonoBehaviour
 				case Type.SquareStatus.EXPLOSION:
 					this.gameOver();
 					break;
-
 			}
+
+			timer.countTimeBehaviorSubject.Subscribe(time => mainGameUI.SetTime(time));
+
+			int fragNum = squareList.Count(obj => obj.IsFlagActive());
+			this.mainGameUI.SetFragNum(fragNum);
+
 		}).AddTo(this);
 	}
 
@@ -93,12 +105,14 @@ public class MainGamePresenter : MonoBehaviour
 		foreach(var obj in squareList){
 			obj.FirstClickAction();
 		}
+		timer.TimerStart();
 	}
 
 
 	private void gameOver() {
 		Debug.Log("GameOver");
 
+		timer.TimerStop();
 		gameOverView.SetActive(true);
 		foreach (var obj in squareList) {
 			obj.isClickable = false;
@@ -107,6 +121,7 @@ public class MainGamePresenter : MonoBehaviour
 	private void gameClear() {
 		Debug.Log("GameClear");
 
+		timer.TimerStop();
 		gameClearView.SetActive(true);
 		foreach (var obj in squareList) {
 			obj.isClickable = false;

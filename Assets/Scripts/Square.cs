@@ -73,11 +73,14 @@ public class Square : MonoBehaviour
 		return aroundBombNum;
 	}
 
+	public bool IsFlagActive(){
+		return this.isFlagActive;
+	}
+
 	public void FirstClickAction(){
 		if (squareType != Type.SquareType.INIT) return;
 		onClickedAction.Invoke(index);
 	}
-
 
 	public void onClick()
 	{
