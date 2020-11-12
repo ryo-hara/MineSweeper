@@ -96,7 +96,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6856345775193266323
 Transform:
   m_ObjectHideFlags: 0
@@ -212,11 +212,6 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 965480246, guid: d0826e154c67d25488b5ef091b8f7218, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: d0b4ebabd95028b439968e8e391ec29d,
-        type: 3}
     - target: {fileID: 2692144146313286077, guid: d0826e154c67d25488b5ef091b8f7218,
         type: 3}
       propertyPath: fragIconObject
