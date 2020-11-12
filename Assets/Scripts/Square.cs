@@ -30,12 +30,16 @@ public class Square : MonoBehaviour
 
 	private int aroundBombNum = 0;
 
+	private bool isFlagActive = false;
+
+
 	public System.Action<int> onClickedAction;
 
 	private void Awake() 
 	{
 		squareStatus.OnNext(Type.SquareStatus.ON_INIT);
 		standardButton.SetButtonAction(this.onClick);
+		standardButton.SetRightClickButtonAction(this.onRightClick);
 		fragIconObject.SetActive(false);
 		bombIconObject.SetActive(false);
 		clickedSquareObject.SetActive(false);
@@ -77,7 +81,8 @@ public class Square : MonoBehaviour
 
 	public void onClick()
 	{
-		if (!isClickable) return; 
+		if (!isClickable) return;
+		if (isFlagActive) return;
 		switch(squareType){
 
 			case Type.SquareType.INIT:
@@ -110,6 +115,20 @@ public class Square : MonoBehaviour
 				break;
 		}
 	}
+
+	public void onRightClick() {
+		if (!isClickable) return;
+		isFlagActive = !isFlagActive;
+		fragIconObject.SetActive(isFlagActive);
+
+		if (isFlagActive) {
+			squareStatus.OnNext(Type.SquareStatus.FLAG);
+		}else{
+			squareStatus.OnNext(Type.SquareStatus.CLICKABLE);
+		}
+
+	}
+
 
 	public void onDestroy() 
 	{
