@@ -68,7 +68,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: e7c56d1bc5ad2ab478101d82c62564f9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -123,10 +123,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  buttonLeftClickEvent:
+  onLeftClick:
     m_PersistentCalls:
       m_Calls: []
-  buttonRightClickEvent:
+  onRightClick:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &9133233681992735362
@@ -197,7 +197,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 92202554c9ef77a4885df27e380e133e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -230,7 +230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 497562695, guid: d0826e154c67d25488b5ef091b8f7218, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 586956154, guid: d0826e154c67d25488b5ef091b8f7218, type: 3}
       propertyPath: m_Name
@@ -258,6 +258,10 @@ PrefabInstance:
       value: 0.62352943
       objectReference: {fileID: 0}
     - target: {fileID: 586956159, guid: d0826e154c67d25488b5ef091b8f7218, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 965480246, guid: d0826e154c67d25488b5ef091b8f7218, type: 3}
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
