@@ -15,9 +15,9 @@ public class MainGameUIView : MonoBehaviour
 
 
 	private void Awake() {
-		bombNum.text = "0";
-		fragNum.text = "0";
-		timeText.text = "00:00";
+		//bombNum.text = "0";
+		//fragNum.text = "0";
+		//timeText.text = "00:00";
 	}
 
 
