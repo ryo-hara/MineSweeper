@@ -26,6 +26,12 @@ public class MineSweeperModel
 	private int mineNum = 10;
 
 
+	public void setData(int _row, int _mine){
+		this.rowNum = _row;
+		this.columnNum = _row;
+		this.mineNum = _mine;
+	}
+
 	public void CreateSquares(System.Action<int, Vector2, float> onCreateCallBack) 
 	{
 		Vector2 startPoint = GetCreateStartPointWorld() + new Vector2(GetOnceSquareWorldSizeRatio() / 2, -1 * GetOnceSquareWorldSizeRatio() / 2);

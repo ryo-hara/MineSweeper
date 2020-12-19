@@ -54,7 +54,7 @@ public class Square : MonoBehaviour
 			//break;
 
 			case Type.SquareType.BOMB:
-				bombIconObject.SetActive(true);
+				//bombIconObject.SetActive(true);
 				break;
 		}
 	}

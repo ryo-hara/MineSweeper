@@ -33,6 +33,8 @@ public class MainGamePresenter : MonoBehaviour
 
 	private List<Square> squareList = new List<Square>();
 
+	private SaveData saveDataObject = null;
+
 
 	private void Awake() 
 	{
@@ -41,6 +43,12 @@ public class MainGamePresenter : MonoBehaviour
 
 	public void Initialize() 
 	{
+
+		saveDataObject = GameObject.Find("SaveData").GetComponent<SaveData>();
+		if (saveDataObject != null){
+			mineSweeperModel.setData(saveDataObject.squareOneSideNum, saveDataObject.bombNum);
+		}
+
 		gameOverView.SetActive(false);
 		gameClearView.SetActive(false);
 		mineSweeperModel.CreateSquares((index, point , sizeRatio) => {
